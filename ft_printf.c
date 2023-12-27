@@ -88,4 +88,5 @@ int main()
 	void	*ptr;
 	ptr = malloc(1);
 	ft_printf("123 %p-", ptr);
+	printf("%p", ptr);
 }
