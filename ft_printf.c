@@ -17,39 +17,6 @@
 #include "libftprintf.h"
 #include "libft/libft.h"
 
-char	*itohexstr(int a, int capital)
-{
-	char	*s;
-	size_t	len;
-	int		aa;
-	size_t	org_len;
-
-	aa = a;
-	len = 1;
-	while (aa > 15)
-	{
-		len++;
-		aa /= 16;
-	}
-	org_len = len;
-	s = (char *)malloc((len + 3) * sizeof(char));
-	s[0] = '0';
-	s[1] = '0';
-	while (len > 0)
-	{
-		if (a % 16 < 10)
-			s[len + 1] = a % 16 + '0';
-		else if (a % 16 >= 10 && capital)
-			s[len + 1] = a % 16 - 10 + 'A';
-		else if (a % 16 >= 10 && !capital)
-			s[len + 1] = a % 16 - 10 + 'a';
-		a /= 16;
-		len--;
-	}
-	s[org_len + 2] = 0;
-	return (s);
-}
-
 va_list	print_conv(char conv, va_list args)
 {
 	if (conv == 'c')
@@ -58,8 +25,16 @@ va_list	print_conv(char conv, va_list args)
 		ft_putstr_fd(va_arg(args, char*), 1);
 	else if (conv == 'p')
 		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 1);
-	else if (conv == 'd')
+	else if (conv == 'd' || conv == 'i')
 		ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
+	else if (conv == 'u')
+		ft_putstr_fd(ft_uitoa(va_arg(args, unsigned int)), 1);
+	else if (conv == 'x')
+		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 0);
+	else if (conv == 'X')
+		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 1);
+	else if (conv == '%')
+		ft_putchar_fd('%', 1);
 	return (args);
 }
 
@@ -75,10 +50,7 @@ int	ft_printf(const char *s, ...)
 		if (s[i] != '%')
 			write(1, &s[i], 1);
 		else
-		{
-
 			args = print_conv(s[i++ + 1], args);
-		}
 		i++;
 	}
 	va_end(args);
@@ -87,6 +59,6 @@ int	ft_printf(const char *s, ...)
 int main()
 {
 	void *p = malloc(1);
-	ft_printf("-%c-%s-%p-%d\n", '9', "abcd", p, -456);
-	printf("-%c-%s-%p-%d\n", '9', "abcd", p, -456);
+	ft_printf("-%c-%s-%p-%x\n", '9', "abcd", p, 33);
+	printf("-%c-%s-%p-%x\n", '9', "abcd", p, 33);
 }

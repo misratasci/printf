@@ -17,6 +17,8 @@
 # include <unistd.h>
 //# include "libft.h"
 
-int	ft_printf(const char *, ...);
+int		ft_printf(const char *, ...);
+char	*ft_uitoa(unsigned int n);
+char	*itohexstr(int a, int capital);
 
 #endif
