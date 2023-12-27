@@ -14,7 +14,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h> //strlen'i ft ile değişince kaldır, libft ekle
+#include "libftprintf.h"
+#include "libft/libft.h"
 
 char	*itohexstr(int a, int capital)
 {
@@ -49,17 +50,17 @@ char	*itohexstr(int a, int capital)
 	return (s);
 }
 
-void	print_conv(char conv, void *arg)
+va_list	print_conv(char conv, va_list args)
 {
-
 	if (conv == 'c')
-		write(1, &arg, 1);
+		ft_putchar_fd((char)va_arg(args, int), 1);
 	else if (conv == 's')
-		write(1, arg, strlen(arg)); //ft ile değiş
+		ft_putstr_fd(va_arg(args, char*), 1);
 	else if (conv == 'p')
-		write(1, itohexstr((int)arg, 1), strlen(itohexstr((int)arg, 1))); //bunu da
-	else if (conv == 'd')	
-		write(1, ft_itoa(arg), strlen(ft_itoa(arg))); //bu da
+		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 1);
+	else if (conv == 'd')
+		ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
+	return (args);
 }
 
 int	ft_printf(const char *s, ...)
@@ -75,8 +76,8 @@ int	ft_printf(const char *s, ...)
 			write(1, &s[i], 1);
 		else
 		{
-			print_conv(s[i + 1], va_arg(args, void *));
-			i++;
+
+			args = print_conv(s[i++ + 1], args);
 		}
 		i++;
 	}
@@ -85,8 +86,7 @@ int	ft_printf(const char *s, ...)
 }
 int main()
 {
-	void	*ptr;
-	ptr = malloc(1);
-	ft_printf("123 %p-", ptr);
-	printf("%p", ptr);
+	void *p = malloc(1);
+	ft_printf("-%c-%s-%p-%d\n", '9', "abcd", p, -456);
+	printf("-%c-%s-%p-%d\n", '9', "abcd", p, -456);
 }

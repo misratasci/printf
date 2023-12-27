@@ -1,9 +1,9 @@
 NAME = libftprintf.a
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 SRCS = \
-	ft_printf.c
+	ft_printf.c libft.a
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
