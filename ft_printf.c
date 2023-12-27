@@ -17,14 +17,14 @@
 #include "libftprintf.h"
 #include "libft/libft.h"
 
-va_list	print_conv(char conv, va_list args)
+static va_list	print_conv(char conv, va_list args)
 {
 	if (conv == 'c')
 		ft_putchar_fd((char)va_arg(args, int), 1);
 	else if (conv == 's')
 		ft_putstr_fd(va_arg(args, char*), 1);
 	else if (conv == 'p')
-		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 1);
+		ft_putstr_fd(ptrtohexstr(va_arg(args, int), 1), 1);
 	else if (conv == 'd' || conv == 'i')
 		ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
 	else if (conv == 'u')

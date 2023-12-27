@@ -19,6 +19,7 @@
 
 int		ft_printf(const char *, ...);
 char	*ft_uitoa(unsigned int n);
+char	*ptrtohexstr(int a, int capital);
 char	*itohexstr(int a, int capital);
 
 #endif
