@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include "libftprintf.h"
 #include "libft/libft.h"
+//LIBFT'yi iyisiyle değiş
 
 static va_list	print_conv(char conv, va_list args)
 {

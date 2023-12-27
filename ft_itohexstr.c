@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h> //kaldır
 
 char	*itohexstr(int a, int capital)
 {
@@ -37,6 +38,7 @@ char	*itohexstr(int a, int capital)
 			s[len-- - 1] = a % 16 - 10 + 'A';
 		else if (a % 16 >= 10 && !capital)
 			s[len-- - 1] = a % 16 - 10 + 'a';
+		printf("%c - %d\n", s[len], a);
 		a /= 16;
 	}
 	s[org_len] = 0;
