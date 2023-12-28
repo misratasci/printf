@@ -6,12 +6,13 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 11:10:02 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 16:03:23 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 16:10:20 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdio.h> //kaldır
+#include <limits.h> //kaldır
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -67,7 +68,7 @@ int main()
 {
 	//void *p = malloc(1);
 	
-	printf("Returns: %i\n", ft_printf("%x\n", -6));
-	printf("Returns: %i\n", printf("%x\n", -6));
+	printf("Returns: %i\n", ft_printf("%p\n", (void *)LONG_MIN));
+	printf("Returns: %i\n", printf("%p\n", (void *)LONG_MIN));
 }
 */

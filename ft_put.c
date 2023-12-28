@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 15:12:03 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 15:42:22 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 16:11:04 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_putptr(void *p)
 		return (write(1, "0x0", 3));
 	l = 0;
 	l += write(1, "0x", 2);
-	s = itohexstr_l((uintptr_t)p, 0);
+	s = itohexstr((uintptr_t)p, 0);
 	l += ft_putstr(s);
 	free(s);
 	return (l);
