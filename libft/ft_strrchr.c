@@ -32,7 +32,7 @@ char	*ft_strrchr(const char *s, int c)
 	slen = strlength(s);
 	str = (char *)s;
 	str += slen;
-	while (slen <= strlength(s))
+	while (slen >= 0 && slen <= strlength(s))
 	{
 		if (*str == ch)
 			return (str);

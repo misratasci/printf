@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:16:28 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/22 14:00:49 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/25 15:45:55 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	end;
 	size_t	i;
 
+	if (!s1[0])
+		return (ft_strdup(""));
 	start = 0;
 	while (in_set(s1[start], set))
 		start += 1;
@@ -50,17 +52,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (in_set(s1[end], set) && end > 0)
 		end -= 1;
 	if (end >= start)
-		str = (char *)malloc(end - start + 2);
+		str = (char *)malloc((end - start + 2) * sizeof(char));
 	else
 		str = (char *)malloc(1);
 	if (!str)
 		return (0);
-	i = 0;
-	while (i < end - start + 1 && end >= start)
-	{
+	i = -1;
+	while (++i < end - start + 1 && end >= start)
 		str[i] = s1[start + i];
-		i += 1;
-	}
 	str[i] = 0;
 	return (str);
 }

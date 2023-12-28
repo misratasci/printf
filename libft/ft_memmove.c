@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:56:21 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/22 13:05:38 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/25 15:06:33 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			i++;
 		}
 	}
-	if (dst > src)
+	else if (dst > src)
 	{
 		i = len;
 		while (i-- > 0)
