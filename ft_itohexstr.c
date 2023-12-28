@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 16:16:48 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 14:50:21 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 16:03:08 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h> //kaldır
 
-static size_t	char_count(int a)
+static size_t	char_count(unsigned int a)
 {
 	size_t	len;
 
@@ -27,7 +27,7 @@ static size_t	char_count(int a)
 	return (len);
 }
 
-char	*itohexstr(int a, int capital)
+char	*itohexstr(unsigned int a, int capital)
 {
 	char	*s;
 	size_t	len;
@@ -36,6 +36,8 @@ char	*itohexstr(int a, int capital)
 	len = char_count(a);
 	org_len = len;
 	s = (char *)malloc((len + 1) * sizeof(char));
+	if (a == 0)
+		s[0] = '0';
 	while (a > 0)
 	{
 		if (a % 16 < 10)

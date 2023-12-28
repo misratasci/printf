@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 11:10:02 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 15:34:02 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 16:03:23 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static int	print_conv(char conv, va_list args)
 	else if (conv == 'u')
 		l += ft_putuint(va_arg(args, unsigned int));
 	else if (conv == 'x')
-		l += ft_putstr(itohexstr(va_arg(args, int), 1));
+		l += ft_puthex(va_arg(args, unsigned int), 0);
 	else if (conv == 'X')
-		l += ft_putstr(itohexstr(va_arg(args, int), 1));
+		l += ft_puthex(va_arg(args, unsigned int), 1);
 	else if (conv == '%')
 		l += ft_putchar('%');
 	return (l);
@@ -67,7 +67,7 @@ int main()
 {
 	//void *p = malloc(1);
 	
-	printf("Returns: %i\n", ft_printf("%u\n", -050));
-	printf("Returns: %i\n", printf("%u\n", -050));
+	printf("Returns: %i\n", ft_printf("%x\n", -6));
+	printf("Returns: %i\n", printf("%x\n", -6));
 }
 */
