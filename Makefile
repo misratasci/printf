@@ -3,7 +3,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 SRCS = \
-	ft_printf.c ft_ptrtohexstr.c ft_itohexstr.c ft_uitoa.c
+	ft_printf.c ft_itohexstr.c ft_uitoa.c ft_put.c \
+	libft/ft_strlen.c libft/ft_itoa.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -19,4 +20,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY = all clean fclean re
+test: $(NAME)
+	$(CC) $(NAME)
+	make clean
+	./a.out
+
+.PHONY = all clean fclean re test

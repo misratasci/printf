@@ -6,60 +6,68 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 11:10:02 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/26 11:10:02 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 15:25:10 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <stdio.h>
+#include <stdio.h> //kaldır
 #include <unistd.h>
 #include <stdlib.h>
-#include "libftprintf.h"
+#include <stdint.h>
+#include "ft_printf.h"
 #include "libft/libft.h"
-//LIBFT'yi iyisiyle değiş
 
-static va_list	print_conv(char conv, va_list args)
+static int	print_conv(char conv, va_list args)
 {
+	int	l;
+
+	l = 0;
 	if (conv == 'c')
-		ft_putchar_fd((char)va_arg(args, int), 1);
+		l += ft_putchar((char)va_arg(args, int));
 	else if (conv == 's')
-		ft_putstr_fd(va_arg(args, char*), 1);
+		l += ft_putstr(va_arg(args, char *));
 	else if (conv == 'p')
-		ft_putstr_fd(ptrtohexstr(va_arg(args, int), 1), 1);
+		l += ft_putptr(va_arg(args, void *));
 	else if (conv == 'd' || conv == 'i')
-		ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
+		l += ft_putstr(ft_itoa(va_arg(args, int)));
 	else if (conv == 'u')
-		ft_putstr_fd(ft_uitoa(va_arg(args, unsigned int)), 1);
+		l += ft_putstr(ft_uitoa(va_arg(args, unsigned int)));
 	else if (conv == 'x')
-		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 0);
+		l += ft_putstr(itohexstr(va_arg(args, int), 1));
 	else if (conv == 'X')
-		ft_putstr_fd(itohexstr(va_arg(args, int), 1), 1);
+		l += ft_putstr(itohexstr(va_arg(args, int), 1));
 	else if (conv == '%')
-		ft_putchar_fd('%', 1);
-	return (args);
+		l += ft_putchar('%');
+	return (l);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
 	size_t	i;
+	int		l;
 
 	i = 0;
+	l = 0;
 	va_start(args, s);
 	while (s[i])
 	{
 		if (s[i] != '%')
-			write(1, &s[i], 1);
+			l += write(1, &s[i], 1);
 		else
-			args = print_conv(s[i++ + 1], args);
+			l += print_conv(s[i++ + 1], args);
 		i++;
 	}
 	va_end(args);
-	return (0);
+	return (l);
 }
+/*
 int main()
 {
-	void *p = malloc(1);
-	ft_printf("-%c-%s-%p-%x\n", '9', "abcd", p, 33);
-	printf("-%c-%s-%p-%x\n", '9', "abcd", p, 33);
+	//void *p = malloc(1);
+	
+	printf("Returns: %i\n", ft_printf("%u\n", -050));
+	printf("Returns: %i\n", printf("%u\n", -050));
 }
+*/
