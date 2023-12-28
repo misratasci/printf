@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 14:09:19 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 15:20:07 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 15:33:51 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ char	*itohexstr_l(int a, int capital);
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
 int		ft_putptr(void *p);
+int		ft_putint(int a);
+int		ft_putuint(unsigned int a);
 
 #endif

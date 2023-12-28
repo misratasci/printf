@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 11:10:02 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 15:25:10 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 15:34:02 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	print_conv(char conv, va_list args)
 	else if (conv == 'p')
 		l += ft_putptr(va_arg(args, void *));
 	else if (conv == 'd' || conv == 'i')
-		l += ft_putstr(ft_itoa(va_arg(args, int)));
+		l += ft_putint(va_arg(args, int));
 	else if (conv == 'u')
-		l += ft_putstr(ft_uitoa(va_arg(args, unsigned int)));
+		l += ft_putuint(va_arg(args, unsigned int));
 	else if (conv == 'x')
 		l += ft_putstr(itohexstr(va_arg(args, int), 1));
 	else if (conv == 'X')

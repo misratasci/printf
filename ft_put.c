@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 15:12:03 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 15:25:59 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 15:34:23 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,39 @@ int	ft_putstr(char *s)
 
 int	ft_putptr(void *p)
 {
-	int	l;
+	int		l;
+	char	*s;
 
 	if (!p)
 		return (write(1, "0x0", 3));
 	l = 0;
 	l += write(1, "0x", 2);
-	l += ft_putstr(itohexstr_l((uintptr_t)p, 0));
+	s = itohexstr_l((uintptr_t)p, 0);
+	l += ft_putstr(s);
+	free(s);
+	return (l);
+}
+
+int	ft_putint(int a)
+{
+	int		l;
+	char	*s;
+
+	l = 0;
+	s = ft_itoa(a);
+	l += ft_putstr(s);
+	free(s);
+	return (l);
+}
+
+int	ft_putuint(unsigned int a)
+{
+	int		l;
+	char	*s;
+
+	l = 0;
+	s = ft_uitoa(a);
+	l += ft_putstr(s);
+	free(s);
 	return (l);
 }
