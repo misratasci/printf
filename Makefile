@@ -20,9 +20,4 @@ fclean: clean
 
 re: fclean all
 
-test: $(NAME)
-	$(CC) $(NAME)
-	make clean
-	./a.out
-
-.PHONY = all clean fclean re test
+.PHONY = all clean fclean re
