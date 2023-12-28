@@ -6,13 +6,12 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 15:12:03 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 16:11:04 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 16:28:08 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include "ft_printf.h"
 #include "libft/libft.h"
 
@@ -37,7 +36,7 @@ int	ft_putptr(void *p)
 		return (write(1, "0x0", 3));
 	l = 0;
 	l += write(1, "0x", 2);
-	s = itohexstr((uintptr_t)p, 0);
+	s = itohexstr_l((unsigned long long)p, 0);
 	l += ft_putstr(s);
 	free(s);
 	return (l);
